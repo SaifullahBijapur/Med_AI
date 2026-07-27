@@ -9,7 +9,7 @@
   "type": "commonjs",
 
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
 
     "dev": "node index.js",
 
