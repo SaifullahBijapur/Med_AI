@@ -1,0 +1,65 @@
+#for reading dashboard data like 
+{
+  "success": true,
+  "analytics": {
+    "totalDoctors": 16,
+    "totalAppointments": 1,
+    "emergencyAppointments": 1,
+    "topDepartment": "Cardiology",
+    "averageQueueLoad": 0.0625
+  }
+}
+get API= http://localhost:5000/api/analytics/dashboard
+
+
+
+
+#to get hospital expence data 
+{
+  "success": true,
+  "analytics": {
+    "totalExpenses": 0,
+    "departmentExpenses": [],
+    "categoryExpenses": []
+  }
+}
+get API : http://localhost:5000/api/expenses/analytics
+
+
+
+#Appoinment Booking for patient
+#FINALresponse
+{
+  "success": true,
+  "triage": {
+    "severity": "High",
+    "department": "Cardiology",
+    "emergency": true
+  },
+  "doctor": {
+    "id": "6a0deca65a82016f0f7ef9d6",
+    "name": "Dr. Anil Sharma",
+    "department": "Cardiology"
+  },
+  "appointment": {
+    "appointmentId": "MH-1780778308389",
+    "patientName": "Amina",
+    "patientPhone": "7777777777",
+    "symptoms": [
+      "severe chest pain",
+      "loss of consciousness",
+      "difficulty breathing"
+    ],
+    "doctorId": "6a0deca65a82016f0f7ef9d6",
+    "department": "Cardiology",
+    "severity": "High",
+    "emergency": true,
+    "queueNumber": 1,
+    "estimatedWaitTime": 0,
+    "status": "Pending",
+    "_id": "6a2485448b3f5c6077221572",
+    "createdAt": "2026-06-06T20:38:28.408Z",
+    "updatedAt": "2026-06-06T20:38:28.408Z",
+    "__v": 0
+  }
+}
