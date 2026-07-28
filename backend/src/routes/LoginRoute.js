@@ -29,9 +29,7 @@ console.log("=====================");
 
 
 
-const express = require("express");
-const router = express.Router();
-const { apiLimiter, authLimiter } = require("../middleware/rateLimiter");
+
 const {
   registerSuperAdmin,
   registerHospitalAdmin,
