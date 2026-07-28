@@ -97,4 +97,5 @@ module.exports = {
   verifyToken,
   requireRole,
   requireHospitalAccess,
+  enforceHospitalScope: requireHospitalAccess
 };
