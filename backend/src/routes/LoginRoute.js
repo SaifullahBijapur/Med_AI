@@ -15,12 +15,12 @@ const {
 const { verifyToken, requireRole, enforceHospitalScope } = require("../middleware/auth");
 const { logAction } = require("../middleware/auditLog");
 
-// Public routes — strict auth rate limiting
+// Public routes — strict auth limiting
 router.post("/register-superadmin", authLimiter, registerSuperAdmin);
 router.post("/login", authLimiter, login);
 router.post("/google", authLimiter, googleLogin);
 
-// Protected routes — general API rate limiting
+// Protected routes — general API limiting
 router.get("/me", verifyToken, apiLimiter, getCurrentUser);
 
 router.post("/register-hospital-admin", verifyToken, requireRole("superadmin"), apiLimiter, registerHospitalAdmin);
