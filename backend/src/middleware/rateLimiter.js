@@ -1,17 +1,9 @@
-// const rateLimit = require("express-rate-limit");
-
-const rateLimit = require('express-rate-limit');
-const { ipKeyGenerator } = require('express-rate-limit');
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  keyGenerator: ipKeyGenerator,  // <-- use the helper
-});
+const rateLimit = require("express-rate-limit");
+const { ipKeyGenerator } = require("express-rate-limit");
 
 // General API rate limiter
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 25 * 60 * 1000, // 15 minutes
   max: 200, // 200 requests per window
   message: {
     success: false,
@@ -23,7 +15,7 @@ const apiLimiter = rateLimit({
 
 // Stricter limiter for auth endpoints
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 25 * 60 * 1000,
   max: 10,
   message: {
     success: false,
@@ -33,9 +25,9 @@ const authLimiter = rateLimit({
 
 // AI endpoint limiter (Gemini API calls are expensive)
 const aiLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 30, // 30 AI calls per minute per hospital
-  keyGenerator: (req) => req.hospitalId || req.ip,
+  windowMs: 120 * 1000, // 1 minute
+  max: 50, // 30 AI calls per minute per hospital
+  keyGenerator: (req) => req.hospitalId || ipKeyGenerator(req.ip),
   message: {
     success: false,
     message: "AI rate limit exceeded. Please try again in a minute.",
