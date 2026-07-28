@@ -122,7 +122,7 @@ const createToolImplementations = (hospitalId) => ({
   search_patients: async ({ query }) => {
     const term = String(query || "").trim();
     if (!term) throw new Error("A search query is required.");
-    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\]/g, "\$&"), "i");
+    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
     const patients = await Patient.find({
       hospitalId,
       $or: [{ fullName: regex }, { phone: regex }, { patientCode: regex }],
