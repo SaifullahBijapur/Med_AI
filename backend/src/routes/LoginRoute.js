@@ -1,5 +1,36 @@
 const express = require("express");
 const router = express.Router();
+const rateLimiters = require("../middleware/rateLimiter");
+console.log("=== DEBUG IMPORTS ===");
+console.log("rateLimiter exports:", Object.keys(rateLimiters));
+console.log("apiLimiter type:", typeof rateLimiters.apiLimiter);
+console.log("authLimiter type:", typeof rateLimiters.authLimiter);
+
+const { apiLimiter, authLimiter } = rateLimiters;
+const authStuff = require("../middleware/auth");
+console.log("auth exports:", Object.keys(authStuff));
+console.log("verifyToken type:", typeof authStuff.verifyToken);
+console.log("requireRole type:", typeof authStuff.requireRole);
+console.log("enforceHospitalScope type:", typeof authStuff.enforceHospitalScope);
+
+const auditStuff = require("../middleware/auditLog");
+console.log("auditLog exports:", Object.keys(auditStuff));
+console.log("logAction type:", typeof auditStuff.logAction);
+
+const ctrl = require("../controllers/AuthController");
+console.log("AuthController exports:", Object.keys(ctrl));
+console.log("register type:", typeof ctrl.register);
+console.log("updateUser type:", typeof ctrl.updateUser);
+console.log("deleteUser type:", typeof ctrl.deleteUser);
+console.log("=====================");
+
+
+
+
+
+
+const express = require("express");
+const router = express.Router();
 const { apiLimiter, authLimiter } = require("../middleware/rateLimiter");
 const {
   registerSuperAdmin,
